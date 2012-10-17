@@ -119,7 +119,6 @@ var MyLayer = cc.Layer.extend({
         bodyDef.set_type(Box2D.b2_dynamicBody);
         bodyDef.set_position(new Box2D.b2Vec2(pos.x/this.size, pos.y/this.size));
         var body = this.world.CreateBody(bodyDef);
-
         body.userData = box;
 
         body.CreateFixture(this.boxFix);
@@ -149,7 +148,7 @@ var MyLayer = cc.Layer.extend({
 
 var Grossini = cc.Class.extend({
     ctor:function(){
-        var ran = 0|(Math.random()*9+1);
+        var ran = 0|(Math.random()*10);
         this.head = cc.Sprite.create('res/head'+ran+'.png');
         this.leftArm = cc.Sprite.create('res/leftarm.png');
         this.rightArm = cc.Sprite.create('res/rightarm.png');
