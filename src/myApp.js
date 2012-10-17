@@ -130,7 +130,7 @@ var MyLayer = cc.Layer.extend({
     },
     update:function(dt){
         dt = dt>0.2? 0.1:dt;
-        this.world.Step(dt, 3,1);
+        this.world.Step(dt, 4,1);
         for(var b = this.world.GetBodyList(); b; b= b.GetNext())
         {
             if(b.userData)
