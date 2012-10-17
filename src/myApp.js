@@ -149,7 +149,7 @@ var MyLayer = cc.Layer.extend({
 
 var Grossini = cc.Class.extend({
     ctor:function(){
-        var ran = 0|(Math.random()*8+1);
+        var ran = 0|(Math.random()*9+1);
         this.head = cc.Sprite.create('res/head'+ran+'.png');
         this.leftArm = cc.Sprite.create('res/leftarm.png');
         this.rightArm = cc.Sprite.create('res/rightarm.png');
