@@ -4,9 +4,6 @@ var s_CloseSelected = "res/CloseSelected.png";
 
 var g_ressources = [
     //image
-    {type:"image", src:s_HelloWorld},
-    {type:"image", src:s_CloseNormal},
-    {type:"image", src:s_CloseSelected},
     {type:"image", src:"res/Icon.png"},
     {type:"image", src:"res/head1.png"},
     {type:"image", src:"res/head2.png"},
