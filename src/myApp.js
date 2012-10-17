@@ -123,9 +123,12 @@ var MyLayer = cc.Layer.extend({
 
         body.CreateFixture(this.boxFix);
     },
+    count:0,
     addGrossini:function(pos){
         var gros = new Grossini();
+        if(this.count < 15)
         gros.spawn(pos, this);
+        this.count ++;
     },
     update:function(dt){
         dt = dt>0.2? 0.1:dt;
