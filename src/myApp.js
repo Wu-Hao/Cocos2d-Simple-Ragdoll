@@ -34,21 +34,6 @@ var MyLayer = cc.Layer.extend({
     init:function () {
         this._super();
 
-        var size = cc.Director.getInstance().getWinSize();
-
-        // add a "close" icon to exit the progress. it's an autorelease object
-        /*var closeItem = cc.MenuItemImage.create(
-            "res/CloseNormal.png",
-            "res/CloseSelected.png",
-            this,
-            this.addSuperHeavy);
-        closeItem.setAnchorPoint(cc.p(0.5, 0.5));
-
-        var menu = cc.Menu.create(closeItem, null);
-        menu.setPosition(cc.PointZero());
-        this.addChild(menu, 1);
-        closeItem.setPosition(cc.p(size.width - 20, 20));*/
-
         this.setTouchEnabled(true);
         this.world = new Box2D.b2World(new Box2D.b2Vec2(0,-10));
         this.world.SetContinuousPhysics(true);
@@ -125,10 +110,12 @@ var MyLayer = cc.Layer.extend({
     },
     count:0,
     addGrossini:function(pos){
-        var gros = new Grossini();
         if(this.count < 15)
-        gros.spawn(pos, this);
-        this.count ++;
+        {
+            var gros = new Grossini();
+            gros.spawn(pos, this);
+            this.count ++;
+        }
     },
     update:function(dt){
         dt = dt>0.2? 0.1:dt;
@@ -148,10 +135,25 @@ var MyLayer = cc.Layer.extend({
     }
 
 });
-
+var heads = [0,1,2,3,4,5,6,7,8,9];
+function ArrayShuffle(arr){
+    for (var i = arr.length - 1; i > 0; i--) {
+        var j = 0|(Math.random() * (i + 1));
+        var tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
+}
+ArrayShuffle(heads);
 var Grossini = cc.Class.extend({
     ctor:function(){
-        var ran = 0|(Math.random()*10);
+        if(Grossini.num<10)
+        {
+            var ran = heads[Grossini.num-1];
+        }
+        else{
+            var ran = (0|(Math.random()*10));
+        }
         this.head = cc.Sprite.create('res/head'+ran+'.png');
         this.leftArm = cc.Sprite.create('res/leftarm.png');
         this.rightArm = cc.Sprite.create('res/rightarm.png');
