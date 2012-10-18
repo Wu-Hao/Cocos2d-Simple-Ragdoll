@@ -135,7 +135,7 @@ var MyLayer = cc.Layer.extend({
     }
 
 });
-var heads = [0,1,2,3,4,5,6,7,8,9];
+var heads = [0,1,2,3,4,5,6,7,8,9,10];
 function ArrayShuffle(arr){
     for (var i = arr.length - 1; i > 0; i--) {
         var j = 0|(Math.random() * (i + 1));
@@ -152,7 +152,7 @@ var Grossini = cc.Class.extend({
             var ran = heads[Grossini.num-1];
         }
         else{
-            var ran = (0|(Math.random()*10));
+            var ran = (0|(Math.random()*heads.length));
         }
         this.head = cc.Sprite.create('res/head'+ran+'.png');
         this.leftArm = cc.Sprite.create('res/leftarm.png');

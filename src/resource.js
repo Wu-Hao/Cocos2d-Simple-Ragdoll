@@ -15,6 +15,7 @@ var g_ressources = [
     {type:"image", src:"res/head7.png"},
     {type:"image", src:"res/head8.png"},
     {type:"image", src:"res/head9.png"},
+    {type:"image", src:"res/head10.png"},
     {type:"image", src:"res/leftarm.png"},
     {type:"image", src:"res/rightarm.png"},
     {type:"image", src:"res/body.png"},

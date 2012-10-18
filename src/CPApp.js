@@ -109,7 +109,7 @@ var MyLayer = cc.Layer.extend({
     }
 
 });
-var heads = [0,1,2,3,4,5,6,7,8,9];
+var heads = [0,1,2,3,4,5,6,7,8,9,10];
 function ArrayShuffle(arr){
     for (var i = arr.length - 1; i > 0; i--) {
         var j = 0|(Math.random() * (i + 1));
@@ -126,9 +126,9 @@ var Grossini = cc.Class.extend({
             var ran = heads[Grossini.num-1];
         }
         else{
-            var ran = (0|(Math.random()*10));
+            var ran = (0|(Math.random()*heads.length));
         }
-        this.head = new CPSprite('res/head'+ran+'.png',cc.pAdd(pos, cc.p(0, 35.5)), 10, 1.4,0.2);
+        this.head = new CPSprite('res/head'+ran+'.png',cc.pAdd(pos, cc.p(0, 35.5)), 15, 1.4,0.2);
         this.leftArm = new CPSprite('res/leftarm.png', cc.pAdd(pos,cc.p(-29.87,11)), 2, 1.4, 0.2);
         this.rightArm = new CPSprite('res/rightarm.png', cc.pAdd(pos,cc.p(29.87,11)), 2,1.4,0.2);
         this.body = new CPSprite('res/body.png', pos, 12, 1, 0.5);
@@ -150,8 +150,8 @@ var Grossini = cc.Class.extend({
 
 
         //add joints
-        Space.addConstraint(new cp.PivotJoint(this.body.body, this.head.body, cp.v.add(cp.v(pos.x,pos.y),cp.v(0, 28.5))));
-        Space.addConstraint(new cp.RotaryLimitJoint(this.body.body, this.head.body, cc.DEGREES_TO_RADIANS(-50), cc.DEGREES_TO_RADIANS(50)));
+        Space.addConstraint(new cp.PivotJoint(this.body.body, this.head.body, cp.v.add(cp.v(pos.x,pos.y),cp.v(-0.01, 23.0))));
+        Space.addConstraint(new cp.DampedRotarySpring(this.body.body, this.head.body, 0, 1000000, 0));
 
         Space.addConstraint(new cp.PivotJoint(this.body.body, this.leftArm.body, cp.v.add(cp.v(pos.x,pos.y),cp.v(-13.5,11))));
         Space.addConstraint(new cp.RotaryLimitJoint(this.body.body, this.leftArm.body, cc.DEGREES_TO_RADIANS(-180), cc.DEGREES_TO_RADIANS(20)));
@@ -161,9 +161,13 @@ var Grossini = cc.Class.extend({
 
         Space.addConstraint(new cp.PivotJoint(this.body.body, this.leftLeg.body, cp.v.add(cp.v(pos.x,pos.y),cp.v(-6.5,-16))));
         Space.addConstraint(new cp.RotaryLimitJoint(this.body.body, this.leftLeg.body, cc.DEGREES_TO_RADIANS(-70), cc.DEGREES_TO_RADIANS(20)));
+        Space.addConstraint(new cp.DampedRotarySpring(this.body.body, this.leftLeg.body, cc.DEGREES_TO_RADIANS(13), 500000, 10));
+
 
         Space.addConstraint(new cp.PivotJoint(this.body.body, this.rightLeg.body, cp.v.add(cp.v(pos.x,pos.y),cp.v(6.5,-16))));
         Space.addConstraint(new cp.RotaryLimitJoint(this.body.body, this.rightLeg.body, cc.DEGREES_TO_RADIANS(-20), cc.DEGREES_TO_RADIANS(70)));
+        Space.addConstraint(new cp.DampedRotarySpring(this.body.body, this.rightLeg.body, cc.DEGREES_TO_RADIANS(-13), 500000, 10));
+
 
 
 
