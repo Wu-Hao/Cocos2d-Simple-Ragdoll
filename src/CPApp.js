@@ -62,15 +62,15 @@ var MyLayer = cc.Layer.extend({
 
     init:function () {
         this._super();
-
+        var thickness = 50;
         this.setTouchEnabled(true);
         //add floor
-        var floor = Space.addShape(new cp.SegmentShape(Space.staticBody, cp.v(0,0), cp.v(cc.canvas.width,0), 0));
+        var floor = Space.addShape(new cp.SegmentShape(Space.staticBody, cp.v(0,0-thickness), cp.v(cc.canvas.width,0-thickness), thickness));
         floor.setElasticity(1);
         floor.setFriction(1);
-        var lwall = Space.addShape(new cp.SegmentShape(Space.staticBody, cp.v(0,cc.canvas.height), cp.v(0,0), 0));
-        var rwall = Space.addShape(new cp.SegmentShape(Space.staticBody, cp.v(cc.canvas.width, cc.canvas.height), cp.v(cc.canvas.width, 0),0));
-        var ceiling = Space.addShape(new cp.SegmentShape(Space.staticBody, cp.v(0, cc.canvas.height), cp.v(cc.canvas.width, cc.canvas.height), 0));
+        var lwall = Space.addShape(new cp.SegmentShape(Space.staticBody, cp.v(0-thickness,cc.canvas.height), cp.v(0-thickness,0), thickness));
+        var rwall = Space.addShape(new cp.SegmentShape(Space.staticBody, cp.v(cc.canvas.width+thickness, cc.canvas.height), cp.v(cc.canvas.width+thickness, 0),thickness));
+        var ceiling = Space.addShape(new cp.SegmentShape(Space.staticBody, cp.v(0, cc.canvas.height+thickness), cp.v(cc.canvas.width, cc.canvas.height+thickness), thickness));
         lwall.setElasticity(1);
         lwall.setFriction(1);
         rwall.setElasticity(1);
