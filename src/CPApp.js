@@ -93,6 +93,21 @@ var MyLayer = cc.Layer.extend({
         var box = new CPSprite("res/Icon.png", pos);
         //box.setContentSize(cc.SizeMake(this.size,this.size));
         this.addChild(box);
+        return box;
+    },
+    collisionCallbackTest:function(){
+        var box1 = this.addPhysicsBody(cc.p(cc.canvas.width/2, cc.canvas.height-100));
+        var box2 = this.addPhysicsBody(cc.p(cc.canvas.width/2, 100));
+
+        box1.shape.setCollisionType(3);
+        box2.shape.setCollisionType(8);
+
+        box1.hi = "hello";
+        box1.sayHi = function(){
+            alert(this.hi);
+        };
+
+        Space.addCollisionHandler(3,8, null, box1.sayHi);
     },
     count:0,
     addGrossini:function(pos){
@@ -187,8 +202,9 @@ Grossini.num = 1;
 var MyScene = cc.Scene.extend({
     onEnter:function () {
         this._super();
-        var layer = new MyLayer();
-        this.addChild(layer);
-        layer.init();
+        this.layer = new MyLayer();
+        this.addChild(this.layer);
+        this.layer.init();
+        MyScene.inst = this;
     }
 });
